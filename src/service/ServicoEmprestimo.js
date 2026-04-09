@@ -3,7 +3,8 @@ const constantes = require("../util/constants");
 
 class ServicoEmprestimo{
     static autorizarEmprestimo(usuario,livro){
-        return this.validarUsuario(usuario);
+        return this.validarUsuario(usuario) && this.validarLivro(livro);
+        
     }
 
     static validarUsuario(usuario){
@@ -13,7 +14,11 @@ class ServicoEmprestimo{
         return true;
     }
 
-    static validarLivro
+    static validarLivro(livro){
+        if(!livro.disponivel) throw new Error(LIVRO_INDISPONIVEL);
+    
+        return true;
+    }
 }
 
 module.exports = ServicoEmprestimo;
